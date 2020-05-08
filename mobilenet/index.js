@@ -140,22 +140,38 @@ function showResults(imgElement, classes) {
   predictionContainer.appendChild(imgContainer);
 
   const probsContainer = document.createElement('div');
-  for (let i = 0; i < classes.length; i++) {
-    const row = document.createElement('div');
-    row.className = 'row';
 
-    const classElement = document.createElement('div');
-    classElement.className = 'cell';
-    classElement.innerText = classes[i].className;
+  //////////////////////////////////////////////////////////////////////
+  const row = document.createElement('div');
+  row.className = 'row';
+
+  if(classes[0].className.includes('hotdog')) {
+    status('hotdog!!!!');
+
+    const classElement = new Image();
+    classElement.src = '../Hot_dog.jpg';
+    classElement.width=224*2;
+    classElement.height=224*2;
     row.appendChild(classElement);
-
-    const probsElement = document.createElement('div');
-    probsElement.className = 'cell';
-    probsElement.innerText = classes[i].probability.toFixed(3);
-    row.appendChild(probsElement);
+  
+    probsContainer.appendChild(row);
+  
+  } else {
+    status('not a hotdog!!!!!')
+    const classElement = new Image();
+    classElement.src = '../Not_hot_dog.jpg';
+    classElement.width=224*2;
+    classElement.height=224*2;
+    row.appendChild(classElement);
 
     probsContainer.appendChild(row);
   }
+
+
+
+
+  //////////////////////////////////////////////////////////////////////
+
   predictionContainer.appendChild(probsContainer);
 
   predictionsElement.insertBefore(
